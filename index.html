@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Redirigiendo…</title>
+  </head>
+  <body>
+    <p>Redirigiendo…</p>
+
+    <script>
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        const d = params.get("d");
+
+        if (!d) {
+          document.body.innerHTML =
+            '<p>Falta el parámetro <code>d</code>. Ejemplo: <code>?d=acme</code></p>';
+          return;
+        }
+
+        const safe = d.trim();
+        if (!/^[a-zA-Z0-9._-]+$/.test(safe)) {
+          document.body.innerHTML =
+            "<p>Valor inválido para <code>d</code>.</p>";
+          return;
+        }
+
+        const target =
+          "https://estudio-sar.github.io/qr-clientes/clientes/shared/template.html" +
+          "?data=" + encodeURIComponent("../" + safe + "/data.json");
+
+        window.location.replace(target);
+      })();
+    </script>
+
+    <noscript>
+      <p>Necesitas JavaScript para redirigir.</p>
+    </noscript>
+  </body>
+</html>
