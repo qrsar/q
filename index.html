@@ -11,7 +11,7 @@
     <script>
       (function () {
         const params = new URLSearchParams(window.location.search);
-        const d = params.get("d");
+        const d = params.get("d").toLowerCase();
 
         if (!d) {
           document.body.innerHTML =
